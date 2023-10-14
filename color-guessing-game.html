@@ -4,27 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>'Color Guessing Game</title>
+    <style>
+
+        
+    </style>
 </head>
 <body>
     <h1>Color Guessing Game</h1>
     <button onclick="runGame()">Start Game</button>
     <script>
-        const COLORS_ARRAY = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
+        const COLORS_ARRAY = ['gold', 'cyan', 'blue', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
         function runGame() {
+            let numTries = 0;
             let guess = "";
             let correct = false;
             const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
             const target = COLORS_ARRAY[targetIndex];
             do {
-                guess = prompt("I am thinking of one of these colors:\n\n" + COLORS_ARRAY + "\n\nWhat Color am I thinking of?\n");
+                guess = prompt("I am thinking of one of these colors:\n\n" + COLORS_ARRAY.sort().join(', ') + "\n\nWhat Color am I thinking of?\n");
+                guess = guess.toLowerCase();
                 if (guess === null) {
                     alert("You hit the cancel button");
                     return;
                 }
                 correct = checkGuess(guess, target);
+                numTries++;
 
             } while (!correct);
-            alert("Congratulations");
+            document.body.style.background = guess;
+            alert("Congratulations!! " + "Number of Tries:" + " " + numTries);
         }
 
         function checkGuess(guess, target) {
