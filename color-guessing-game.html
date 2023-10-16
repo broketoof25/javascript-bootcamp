@@ -32,19 +32,19 @@
 
             } while (!correct);
             document.body.style.background = guess;
-            alert("Congratulations!! " + "Number of Tries:" + " " + numTries);
+            alert("Congratulations, you have guessed the color!!\n\n" + "Number of Tries:" + " " + numTries);
         }
 
         function checkGuess(guess, target) {
             let correct = false;
             if (COLORS_ARRAY.includes(guess) === false) {
-                alert("You did not choose a color in the list");
+                alert("Sorry I don't recognize your color.\n\n" + "\n\nPlease try again.");
             }
             else if (COLORS_ARRAY.indexOf(guess) > COLORS_ARRAY.indexOf(target)) {
-                alert("Guess is higher than target");
+                alert("Sorry your guess is incorrect.\n\n" + "\nHint:  Your color is alphabetically higher than mine.\n\n" + "\nPlease try again." );
             }
             else if (COLORS_ARRAY.indexOf(guess) < COLORS_ARRAY.indexOf(target)) {
-                alert("Guess is less than target");
+                alert("Sorry your guess is incorrect.\n\n" + "\nHint:  Your color is alphabetically lower than mine.\n\n" + "\nPlease try again." );
             }
             else {
                 correct = true;
