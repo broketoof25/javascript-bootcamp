@@ -8,3 +8,21 @@ try {
   } finally {
     console.log("this is the finally block"); // always runs
   }
+
+
+  try {
+    let userData = '{ "age": 30 }'; // data received from server
+    let user = JSON.parse(userData); // parsing JSON
+    
+    if (!user.name) {
+      throw new SyntaxError("Incomplete data: no name"); 
+    }
+  
+    console.log(user.name); 
+  
+  } catch(e) {
+    console.log("jsonErr " + e.message);
+    console.log(e.name); 
+    console.log(e); 
+  }
+  
