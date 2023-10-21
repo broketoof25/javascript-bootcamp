@@ -13,19 +13,29 @@ class Bootcamp {
     }
     registerStudent(studentToRegister) {
         if (!(studentToRegister.name) || (!studentToRegister.email)) {
-            console.log("Invalid Name of Email")
+            console.log("Invalid Name or Email")
             return false;
         }
         for (let student of this.students) {
             if (student.email === studentToRegister.email) {
-                console.log("Email is already registered");
+                console.log(`The email address ${studentToRegister.email} is already registered`);
                 return false;
             }
         }
         this.students.push(studentToRegister);
-        console.log(`Success added ${studentToRegister.name}`)
+        console.log(`Registering ${studentToRegister.name} to the React bootcamp`)
         return true;
-
+    }
+    listStudents() {
+        if (this.students.length === 0) {
+            console.log(`No students registered to the ${this.name} bootcamp`)
+            return false;
+        }
+        console.log(`The students registered in ${this.name} are:`)
+        for (let student of this.students) {
+            console.log(`Name: ${student.name} Email: ${student.email}`);
+        }
+        return true;
     }
 }
 
@@ -53,6 +63,15 @@ const runTest = (bootcamp, student) => {
     const attemptThree = bootcamp.registerStudent(new Student("Babs Bunny"));
     if ( attemptOne && !attemptTwo && !attemptThree) {
         console.log("TASK 3: PASS");
+    }
+
+    bootcamp.registerStudent(new Student('Babs Bunny', 'babs@bunny.com'));
+    if (bootcamp.listStudents()) {
+        console.log("TASK 4: PASS 1/2");
+    }
+    bootcamp.students = [];
+    if (!bootcamp.listStudents()) {
+        console.log("TASK 4: PASS 2/2");
     }
 };
 runTest(reactBootcamp, testStudent);

@@ -11,6 +11,7 @@ class Bootcamp {
         this.level = level;
         this.students = students;      
     }
+    
     registerStudent(studentToRegister) {
         if (!(studentToRegister.name) || (!studentToRegister.email)) {
             console.log("Invalid Name or Email")
@@ -26,6 +27,7 @@ class Bootcamp {
         console.log(`Registering ${studentToRegister.name} to the React bootcamp`)
         return true;
     }
+
     listStudents() {
         if (this.students.length === 0) {
             console.log(`No students registered to the ${this.name} bootcamp`)
@@ -37,10 +39,12 @@ class Bootcamp {
         }
         return true;
     }
+
+     getInfo() {
+        let bootCampInfo = {name: this.name, level: this.level};
+        return JSON.stringify(bootCampInfo);
+    } 
 }
-
-
-
 
 
 
