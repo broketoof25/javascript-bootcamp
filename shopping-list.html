@@ -25,21 +25,39 @@
         const shoppingList = document.getElementById("shoppingList")
         let shopList = [];
         // add your JavaScript code here
+
         function getItem() {
             event.preventDefault();
             const item = document.getElementById("item").value;
-            if (shopList.includes(item)) {
-                prompt("Item already in shopping list");
-            } 
-            else if (!shopList.includes(item)) {
-                shopList.push(item);
-                prompt("Item added to list");
+            if (item === "") {
+                alert("Empty Input");
+                return;
             }
+            if (shopList.includes(item)) {
+                alert("Item already in shopping list");
+                return;
+            } 
+            shopList.push(item);
+            shopList.sort();
             document.getElementById("myForm").reset();
+            makeList();
         }
 
         function makeList() {
-            
+            shoppingList.innerHTML = '';
+            for (let item of shopList) {
+                let listItem = document.createElement('li');
+                listItem.textContent = item;
+                listItem.addEventListener("click", removeItem);
+                shoppingList.appendChild(listItem);
+            }
+        }
+
+        function removeItem(event) {
+            const item = event.currentTarget.textContent;
+            index = shopList.indexOf(item);
+            shopList.splice(index, 1);
+            makeList();
         }
     </script>
 </body>
