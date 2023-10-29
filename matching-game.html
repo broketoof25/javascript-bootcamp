@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matching Game</title>
     <style>
+        body {
+            background-color: #82CD47;
+        }
         img {
             position: absolute;
         }
@@ -27,6 +30,7 @@
 
     <script>
         window.addEventListener('load', generateFaces);
+        let counter = 0;
         let numberOfFaces = 5;
         const theLeftSide = document.querySelector("#leftSide");
         const theRightSide = document.querySelector("#rightSide");
@@ -34,7 +38,7 @@
         function generateFaces() {
           for (let i = 0; i < numberOfFaces; i++) {
             face = document.createElement("img");
-            face.src = "images/smile.png";
+            face.src = "images/pumpkin2.png";
             let randomTop = Math.floor(Math.random() * 400) + 1;
             let randomLeft = Math.floor(Math.random() * 400) + 1;
             face.style.top = randomTop + 'px';
@@ -45,17 +49,25 @@
           leftSideImages.removeChild(leftSideImages.lastChild);
           theRightSide.appendChild(leftSideImages);
           theLeftSide.lastChild.addEventListener('click', nextLevel);
+          counter++;
           document.body.addEventListener('click', gameOver);
         }
 
         function nextLevel(event) {
             event.stopPropagation();
             numberOfFaces += 5;
+            while (theLeftSide.lastChild) {
+                theLeftSide.removeChild(theLeftSide.lastChild);
+            }
+            while (theRightSide.lastChild){
+                theRightSide.removeChild(theRightSide.lastChild);
+            }
             generateFaces();
+
         }
 
         function gameOver() {
-            alert("Game Over!");
+            alert(`Game Over! Number of Tries: ${counter}`);
             document.body.removeEventListener('click', nextLevel);
             document.body.removeEventListener('click', gameOver);
         }
