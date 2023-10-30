@@ -1,0 +1,28 @@
+ /*Setup Div to 4 Panels */
+ .TopRight {
+    left: 500px;
+    border-left: 1px solid;
+}
+
+.BottomRight {
+    left: 500px;
+    border-left: 1px solid;
+}
+
+.BottomRight {
+    left: 500px;
+    border-bottom: 1px solid;
+}
+
+.BottomLeft {
+    left: 500px;
+    border-bottom: 1px solid;
+}
+
+
+/*Div Dimensions*/
+div {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+}
