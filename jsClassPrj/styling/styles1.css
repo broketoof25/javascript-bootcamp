@@ -1,0 +1,8 @@
+.game-card {
+    border: 2px solid #333;
+    margin: 15px;
+}
+
+.game-section {
+    padding-top: 15vh; /* 15% of the viewport height */
+}
